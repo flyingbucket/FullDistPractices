@@ -2,6 +2,7 @@ import breeze.linalg.{DenseVector,DenseMatrix,sum,norm}
 
 object BreezeExercises{
   def q1():Unit = {
+    println("\nQuestion 1")
     val a = DenseVector[Double](1,3,5,7,9,7,5,3,1)
 
     val col = a.toDenseMatrix.t        // 9×1
@@ -10,10 +11,15 @@ object BreezeExercises{
             DenseMatrix.ones[Double](a.length, 1) * row
     println(A)
   }
-
+  def q2():Unit = {
+    println("\nQuestion 2")
+    val a = DenseVector[Double](1,3,5,7,9,7,5,3,1)
+    val B = a.toDenseMatrix.t * a.toDenseMatrix
+    println(B)
+  }
   def main(args:Array[String]):Unit = {
     q1()
-    // q2()
+    q2()
     // q3()
     // q4()
     // q5()
