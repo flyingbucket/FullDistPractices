@@ -1,4 +1,5 @@
 /.bsp/
+.vscode/
 target/
 .metals/
 .scala-build/
