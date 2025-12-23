@@ -17,6 +17,19 @@ object BreezeExercises {
     val B = a.toDenseMatrix.t * a.toDenseMatrix
     println(B)
   }
+  def q3(): Unit = {
+    println("\nQuestion 3")
+    val mat = DenseMatrix(
+      (-1, -2, -3),
+      (4, 5, 6),
+      (7, 8, 9),
+      (6, 5, 4),
+      (-3, -2, -1)
+    ).map(_.toDouble)
+    println(s"matrix:{mat}")
+    val colMean = mean(mat(::, *))
+
+  }
   def main(args: Array[String]): Unit = {
     q1()
     q2()
