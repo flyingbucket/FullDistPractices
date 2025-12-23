@@ -5,9 +5,10 @@ object LinearModel {
 
   def main(args: Array[String]): Unit = {
 
-    val spark = SparkSession.builder()
+    val spark = SparkSession
+      .builder()
       .appName("LinearModel")
-      .master("local[*]")   // 课程实验一般这样
+      .master("local[*]") // 课程实验一般这样
       .getOrCreate()
 
     val sc = spark.sparkContext
@@ -20,7 +21,9 @@ object LinearModel {
     val NonZeroLength = 10
     val p = ColumnSize.value * ColumnLength.value
 
-    val beta = (1 to p).map(_.toDouble).toArray
+    val beta = (1 to p)
+      .map(_.toDouble)
+      .toArray
       .map(i => if (i < NonZeroLength + 1) 2.0 else 0.0)
 
     val MyBeta = sc.broadcast(beta)
