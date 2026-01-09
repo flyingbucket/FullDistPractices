@@ -4,6 +4,25 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.rdd.RDD
 
 object EM {
+  // 数据生成函数
+  def generateData(
+      N: Int,
+      mu1: Double,
+      sig1: Double,
+      mu2: Double,
+      sig2: Double,
+      p: Double
+  ): Array[Double] = {
+
+    val r = ThreadLocalRandom.current
+
+    Array.fill(N) {
+      if (r.nextDouble() <= p)
+        mu1 + sig1 * r.nextGaussian()
+      else
+        mu2 + sig2 * r.nextGaussian()
+    }
+  }
 
   def main(args: Array[String]): Unit = {
 
@@ -116,25 +135,5 @@ object EM {
     println(f"EstSig2 = $EstSig2%.4f")
 
     spark.stop()
-  }
-
-  // 数据生成函数
-  def generateData(
-      N: Int,
-      mu1: Double,
-      sig1: Double,
-      mu2: Double,
-      sig2: Double,
-      p: Double
-  ): Array[Double] = {
-
-    val r = ThreadLocalRandom.current
-
-    Array.fill(N) {
-      if (r.nextDouble() <= p)
-        mu1 + sig1 * r.nextGaussian()
-      else
-        mu2 + sig2 * r.nextGaussian()
-    }
   }
 }
